@@ -1,12 +1,12 @@
-﻿using CodeSwine_Solo_Public_Lobby.Helpers;
-using CodeSwine_Solo_Public_Lobby.Models;
-using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using Newtonsoft.Json;
+using SoloPublicLobby.Helpers;
+using SoloPublicLobby.Models;
 
-namespace CodeSwine_Solo_Public_Lobby.DataAccess
+namespace SoloPublicLobby.DataAccess
 {
     public class DaWhitelist
     {

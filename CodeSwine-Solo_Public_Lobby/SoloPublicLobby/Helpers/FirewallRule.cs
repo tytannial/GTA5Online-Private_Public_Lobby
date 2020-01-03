@@ -1,9 +1,9 @@
-﻿using NetFwTypeLib;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using NetFwTypeLib;
 
-namespace CodeSwine_Solo_Public_Lobby.Helpers
+namespace SoloPublicLobby.Helpers
 {
     public class FirewallRule
     {

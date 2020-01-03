@@ -1,53 +1,41 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace CodeSwine_Solo_Public_Lobby.Helpers
+namespace SoloPublicLobby.Helpers
 {
     public class IPTool
     {
-        private string _ipAddress;
-
-        public string IpAddress 
-        {
-            get 
-            {
-                if (_ipAddress == null) _ipAddress = GrabInternetAddress();
-                return _ipAddress;
-            }
-        }
-
         /// <summary>
         /// Gets the hosts IP Address.
         /// </summary>
         /// <returns>String value of IP.</returns>
-        private string GrabInternetAddress()
+        public async Task<string> GetPublicIp()
         {
             // Still needs check to see if we could retrieve the IP.
             // Try for ipv6 first, but if that fails get ipv4
-            string ip = "";
+            Exception ex;
             try
             {
-                ip = new WebClient().DownloadString("https://ipv6.icanhazip.com");
+                return await new WebClient().DownloadStringTaskAsync("https://ipv6.icanhazip.com");
+            }
+            catch
+            {
+            }
+
+            //ErrorLogger.LogException(e);
+            //IPv4 Mode
+            try
+            {
+                return await new WebClient().DownloadStringTaskAsync("https://ipv4.icanhazip.com");
             }
             catch (Exception e)
             {
-                ErrorLogger.LogException(e);
-
-                try
-                {
-                    ip = new WebClient().DownloadString("https://ipv4.icanhazip.com");
-                }
-                catch (Exception e2)
-                {
-                    ErrorLogger.LogException(e2);
-                    ip = "IP not found.";
-                }
+                ex = e;
             }
-            return ip;
+
+            ErrorLogger.LogException(ex);
+            return "IP not found.";
         }
 
         public static bool ValidateIP(string ipString)

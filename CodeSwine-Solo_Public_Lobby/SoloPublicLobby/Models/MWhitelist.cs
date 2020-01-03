@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace CodeSwine_Solo_Public_Lobby.Models
+namespace SoloPublicLobby.Models
 {
     public class MWhitelist
     {
